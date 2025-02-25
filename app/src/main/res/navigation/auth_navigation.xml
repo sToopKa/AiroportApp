@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation"
+    app:startDestination="@id/firstFragment">
+
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="com.sto_opka91.airoportapp.ui.first_fragment.FirstFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_first" >
+        <action
+            android:id="@+id/action_firstFragment_to_enterLoginFragment"
+            app:destination="@id/enterLoginFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_mobile_navigation"
+            app:destination="@id/airportListFragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_airportListFragment"
+            app:destination="@id/airportListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/enterLoginFragment"
+        android:name="com.sto_opka91.airoportapp.ui.autentification.EnterLoginFragment"
+        android:label="EnterLoginFragment" >
+
+        <action
+            android:id="@+id/action_enterLoginFragment_to_promtLoginFragment"
+            app:destination="@id/promtLoginFragment" />
+        <action
+            android:id="@+id/action_enterLoginFragment_to_airportListFragment"
+            app:destination="@id/airportListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/promtLoginFragment"
+        android:name="com.sto_opka91.airoportapp.ui.autentification.PromtLoginFragment"
+        android:label="PromtLoginFragment" >
+        <action
+            android:id="@+id/action_promtLoginFragment_to_mobile_navigation"
+            app:destination="@id/airportListFragment" />
+        <action
+            android:id="@+id/action_promtLoginFragment_to_enterLoginFragment"
+            app:destination="@id/enterLoginFragment" />
+        <action
+            android:id="@+id/action_promtLoginFragment_to_airportListFragment"
+            app:destination="@id/airportListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/airportListFragment"
+        android:name="com.sto_opka91.airoportapp.ui.airport_list.AirportListFragment"
+        android:label="fragment_airport_list"
+        tools:layout="@layout/fragment_airport_list" >
+        <action
+            android:id="@+id/action_airportListFragment_to_detailInfoPlaneFragment"
+            app:destination="@id/detailInfoPlaneFragment" />
+        <action
+            android:id="@+id/action_airportListFragment_to_settingsMainFragment"
+            app:destination="@id/settingsMainFragment" />
+        <action
+            android:id="@+id/action_airportListFragment_to_buyTicketAiroportFragment"
+            app:destination="@id/buyTicketAiroportFragment" />
+        <action
+            android:id="@+id/action_airportListFragment_to_favoriteFlightFragment"
+            app:destination="@id/favoriteFlightFragment" />
+        <action
+            android:id="@+id/action_airportListFragment_to_yourTicketsFragment"
+            app:destination="@id/yourTicketsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailInfoPlaneFragment"
+        android:name="com.sto_opka91.airoportapp.ui.detailInfoFragment.DetailInfoPlaneFragment"
+        android:label="fragment_detail_info_plane"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/settingsMainFragment"
+        android:name="com.sto_opka91.airoportapp.ui.settings.SettingsMainFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_settingsMainFragment_to_privateInfoFragment"
+            app:destination="@id/privateInfoFragment" />
+        <action
+            android:id="@+id/action_settingsMainFragment_to_enterLoginFragment"
+            app:destination="@id/enterLoginFragment" />
+        <action
+            android:id="@+id/action_settingsMainFragment_to_enterLoginFragment2"
+            app:destination="@id/enterLoginFragment" />
+        <action
+            android:id="@+id/action_settingsMainFragment_to_savedCardFragment"
+            app:destination="@id/savedCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/privateInfoFragment"
+        android:name="com.sto_opka91.airoportapp.ui.settings.PrivateInfoFragment"
+        android:label="fragment_private_info"
+        tools:layout="@layout/fragment_private_info" >
+        <action
+            android:id="@+id/action_privateInfoFragment_to_enterLoginFragment"
+            app:destination="@id/enterLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/buyTicketAiroportFragment"
+        android:name="com.sto_opka91.airoportapp.ui.airport_list.BuyTicketAiroportFragment"
+        android:label="BuyTicketAiroportFragment" >
+        <action
+            android:id="@+id/action_buyTicketAiroportFragment_to_detailInfoPlaneFragment"
+            app:destination="@id/detailInfoPlaneFragment" />
+        <action
+            android:id="@+id/action_buyTicketAiroportFragment_to_settingsMainFragment"
+            app:destination="@id/settingsMainFragment" />
+        <action
+            android:id="@+id/action_buyTicketAiroportFragment_to_buyTicketAddOptionsFragment"
+            app:destination="@id/buyTicketAddOptionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/buyTicketAddOptionsFragment"
+        android:name="com.sto_opka91.airoportapp.ui.airport_list.BuyTicketAddOptionsFragment"
+        android:label="BuyTicketAddOptionsFragment" >
+        <action
+            android:id="@+id/action_buyTicketAddOptionsFragment_to_addCardFragmentFragment"
+            app:destination="@id/addCardFragmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCardFragmentFragment"
+        android:name="com.sto_opka91.airoportapp.ui.card_action.AddCardFragmentFragment"
+        android:label="AddCardFragmentFragment" />
+    <fragment
+        android:id="@+id/favoriteFlightFragment"
+        android:name="com.sto_opka91.airoportapp.ui.favorite_fragment.FavoriteFlightFragment"
+        android:label="FavoriteFlightFragment" >
+        <action
+            android:id="@+id/action_favoriteFlightFragment_to_detailInfoPlaneFragment"
+            app:destination="@id/detailInfoPlaneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/yourTicketsFragment"
+        android:name="com.sto_opka91.airoportapp.ui.your_tickets.YourTicketsFragment"
+        android:label="YourTicketsFragment" >
+        <action
+            android:id="@+id/action_yourTicketsFragment_to_finishedTicketFragment"
+            app:destination="@id/finishedTicketFragment" />
+        <action
+            android:id="@+id/action_yourTicketsFragment_to_actualTicketFragment"
+            app:destination="@id/actualTicketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishedTicketFragment"
+        android:name="com.sto_opka91.airoportapp.ui.your_tickets.FinishedTicketFragment"
+        android:label="FinishedTicketFragment" />
+    <fragment
+        android:id="@+id/actualTicketFragment"
+        android:name="com.sto_opka91.airoportapp.ui.your_tickets.ActualTicketFragment"
+        android:label="fragment_actual_ticket"
+        tools:layout="@layout/fragment_actual_ticket" >
+        <action
+            android:id="@+id/action_actualTicketFragment_to_addPassengerFragment"
+            app:destination="@id/addPassengerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPassengerFragment"
+        android:name="com.sto_opka91.airoportapp.ui.your_tickets.AddPassengerFragment"
+        android:label="AddPassengerFragment" />
+    <fragment
+        android:id="@+id/savedCardFragment"
+        android:name="com.sto_opka91.airoportapp.ui.settings.SavedCardFragment"
+        android:label="SavedCardFragment" />
+</navigation>

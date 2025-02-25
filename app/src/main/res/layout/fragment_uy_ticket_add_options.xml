@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detailInfoFragment.DetailInfoPlaneFragment">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvTopHeader"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="-5dp"
+        android:backgroundTint="@color/main_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_back_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvCityDeparture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Новосибирск"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/llDateTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="31dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCityDeparture">
+
+                <TextView
+                    android:id="@+id/tvDatetitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    tools:text="18 декабря" />
+
+                <TextView
+                    android:id="@+id/tvSlash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="/"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvTemperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="-20℃ солнечно"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDepArrTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="31dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llDateTemperature">
+
+
+                <TextView
+                    android:id="@+id/tvDepartureTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="start"
+                    android:text="Отправление"
+                    android:textColor="@color/text_blue"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvArriveTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:gravity="end"
+                    android:text="Прибытие"
+                    android:textColor="@color/text_blue"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvDepartureCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llDepArrTitle"
+                tools:text="UZB" />
+
+            <TextView
+                android:id="@+id/tvArriveCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/llDepArrTitle"
+                app:layout_constraintTop_toBottomOf="@id/llDepArrTitle"
+                tools:text="LZD" />
+
+            <ImageView
+                android:id="@+id/ivFlightPaint"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_fly_linear"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDepartureCode"
+                app:layout_constraintEnd_toStartOf="@+id/tvArriveCode"
+                app:layout_constraintStart_toEndOf="@+id/tvDepartureCode"
+                app:layout_constraintTop_toTopOf="@+id/tvDepartureCode" />
+
+
+            <TextView
+                android:id="@+id/tvDepartureDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/tvDepartureCode"
+                app:layout_constraintTop_toBottomOf="@id/tvDepartureCode"
+                tools:text="18 декабря" />
+
+            <TextView
+                android:id="@+id/tvDepartureTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/tvDepartureDate"
+                app:layout_constraintTop_toBottomOf="@id/tvDepartureDate"
+                tools:text="16:15" />
+
+            <TextView
+                android:id="@+id/tvDepartureTimeCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="(UTC +3)"
+                android:textColor="@color/text_blue"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvDepartureTime"
+                app:layout_constraintStart_toEndOf="@id/tvDepartureTime"
+                app:layout_constraintTop_toTopOf="@id/tvDepartureTime" />
+
+            <TextView
+                android:id="@+id/tvArriveDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/tvArriveCode"
+                app:layout_constraintTop_toBottomOf="@id/tvArriveCode"
+                tools:text="18 декабря" />
+
+            <TextView
+                android:id="@+id/tvArriveTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/tvArriveDate"
+                app:layout_constraintTop_toBottomOf="@id/tvArriveDate"
+                tools:text="16:15" />
+
+            <TextView
+                android:id="@+id/tvArriveTimeCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="(UTC +3)"
+                android:textColor="@color/text_blue"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tvArriveTime"
+                app:layout_constraintStart_toEndOf="@id/tvArriveTime"
+                app:layout_constraintTop_toTopOf="@id/tvArriveTime" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="-10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvTopHeader"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvTopFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/color_filter"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/cvTopHeader"
+                app:layout_constraintTop_toBottomOf="@+id/cvTopHeader"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="31dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="31dp"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:id="@+id/tvPriceTitle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="0.9"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:text="Стоимость билета"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cvPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|end"
+                                android:layout_weight="0.1"
+                                android:backgroundTint="@color/orange_tint"
+                                app:cardCornerRadius="16dp">
+
+                                <TextView
+                                    android:id="@+id/tvPrice"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:fontFamily="@font/montserrat_bold"
+                                    android:gravity="center"
+                                    android:text="16094P"
+                                    android:textColor="@color/white"
+                                    android:textSize="16sp" />
+
+                            </androidx.cardview.widget.CardView>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvAddBagage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Добавить багаж"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="Не включен"
+                                android:textColor="@color/item_flight_text_gray"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/switchAddBagage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                app:thumbTint="@color/white"
+                                app:trackTint="@drawable/switch_selector" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:background="@drawable/gradient_item_flight"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tvBagage23kg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="Багаж 23кг"
+                                android:textColor="@color/item_flight_text_gray"
+                                android:textSize="14sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/ivPlus23kg"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:src="@drawable/ic_plus"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/tvBagage23kg"
+                                app:layout_constraintTop_toBottomOf="@+id/tvBagage23kg" />
+
+                            <TextView
+                                android:id="@+id/tvBagage23kgBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:text="2 990 Руб."
+                                android:textColor="@color/main_blue"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/ivPlus23kg"
+                                app:layout_constraintStart_toEndOf="@+id/ivPlus23kg"
+                                app:layout_constraintTop_toTopOf="@+id/ivPlus23kg" />
+
+                            <TextView
+                                android:id="@+id/tvBagage23kgRed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="2 990 Руб."
+                                android:textColor="@color/item_flight_text_red"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tvBagage23kgBlue"
+                                app:layout_constraintStart_toEndOf="@+id/tvBagage23kgBlue"
+                                app:layout_constraintTop_toTopOf="@+id/tvBagage23kgBlue" />
+
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/switchAddBagage23"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                app:thumbTint="@color/white"
+                                app:trackTint="@drawable/switch_selector" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:background="@drawable/gradient_item_flight"
+                            android:orientation="horizontal"></LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tvBagage2x23kg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="Багаж 23кг"
+                                android:textColor="@color/item_flight_text_gray"
+                                android:textSize="14sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/ivPlus2x23kg"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:src="@drawable/ic_plus"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/tvBagage2x23kg"
+                                app:layout_constraintTop_toBottomOf="@+id/tvBagage2x23kg" />
+
+                            <TextView
+                                android:id="@+id/tvBagage2x23kgBlue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:text="8 550 Руб."
+                                android:textColor="@color/main_blue"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/ivPlus2x23kg"
+                                app:layout_constraintStart_toEndOf="@+id/ivPlus2x23kg"
+                                app:layout_constraintTop_toTopOf="@+id/ivPlus2x23kg" />
+
+                            <TextView
+                                android:id="@+id/tvBagage2x23kgRed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:text="11 120 Руб."
+                                android:textColor="@color/item_flight_text_red"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tvBagage2x23kgBlue"
+                                app:layout_constraintStart_toEndOf="@+id/tvBagage2x23kgBlue"
+                                app:layout_constraintTop_toTopOf="@+id/tvBagage2x23kgBlue" />
+
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/switchAddBagage23x2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+
+                                app:thumbTint="@color/white"
+                                app:trackTint="@drawable/switch_selector" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvWhoFlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="31dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Кто полетит?"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/cv_background_toggle"
+                app:cardCornerRadius="16dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="31dp"
+                app:cardElevation="0dp">
+
+                <RadioGroup
+                    android:id="@+id/toggleGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <RadioButton
+                        android:id="@+id/btnFirst"
+                        style="@style/GenderToggleButton"
+                        android:checked="true"
+                        android:text="Иванов В.В."
+                        app:cardCornerRadius="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/btnTwo"
+                        style="@style/GenderToggleButton"
+                        android:text="Петров И.И."
+                        app:cardCornerRadius="12dp" />
+
+                    <RadioButton
+                        android:id="@+id/btnTree"
+                        style="@style/GenderToggleButton"
+                        android:text="Сидоров С.С."
+                        app:cardCornerRadius="12dp" />
+
+                </RadioGroup>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="31dp"
+                app:cardCornerRadius="16dp"
+                android:backgroundTint="@color/item_flight_background">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivAnimals"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_animal"/>
+
+                    <TextView
+                        android:id="@+id/tvFlightWithAnimals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        app:layout_constraintStart_toEndOf="@id/ivAnimals"
+                        app:layout_constraintTop_toTopOf="@id/ivAnimals"
+                        app:layout_constraintBottom_toBottomOf="@id/ivAnimals"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Перелет с животными"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvTakeAnimals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="@id/ivAnimals"
+                        app:layout_constraintTop_toBottomOf="@id/ivAnimals"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Возьмите с собой верного попутчика"
+                        android:textColor="@color/color_text_gray"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:id="@+id/llDividerItemAnimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/gradient_item_flight"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTakeAnimals"/>
+
+                    <ImageView
+                        android:id="@+id/ivAnimalPrice"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/ic_plus"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llDividerItemAnimal" />
+
+                    <TextView
+                        android:id="@+id/tvivAnimalPriceBlue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="2 990 Руб."
+                        android:textColor="@color/main_blue"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivAnimalPrice"
+                        app:layout_constraintStart_toEndOf="@+id/ivAnimalPrice"
+                        app:layout_constraintTop_toTopOf="@+id/ivAnimalPrice" />
+
+                    <TextView
+                        android:id="@+id/tvAnimalPriceRed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="2 990 Руб."
+                        android:textColor="@color/item_flight_text_red"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvivAnimalPriceBlue"
+                        app:layout_constraintStart_toEndOf="@+id/tvivAnimalPriceBlue"
+                        app:layout_constraintTop_toTopOf="@+id/tvivAnimalPriceBlue" />
+
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchAddAnimal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:checked="false"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivAnimalPrice"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ivAnimalPrice"
+                        app:thumbTint="@color/white"
+                        app:trackTint="@drawable/switch_selector" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvDopServices"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="31dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Доп. услуги"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="31dp"
+                android:layout_marginTop="10dp">
+
+
+                <TextView
+                    android:id="@+id/tvHandBagage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Ручная кладь"
+                    android:textColor="@color/color_text_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvHandBagageKg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="(5 кг)"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvHandBagage"
+                    app:layout_constraintStart_toEndOf="@+id/tvHandBagage"
+                    app:layout_constraintTop_toTopOf="@+id/tvHandBagage" />
+
+                <TextView
+                    android:id="@+id/tvHandBagagePrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="+ 1000 Р"
+                    android:textColor="@color/main_blue"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvHandBagageKg"
+                    app:layout_constraintStart_toEndOf="@+id/tvHandBagageKg"
+                    app:layout_constraintTop_toTopOf="@+id/tvHandBagageKg" />
+
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchHandBagage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    app:thumbTint="@color/white"
+                    app:trackTint="@drawable/switch_selector" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="31dp"
+                android:layout_marginTop="10dp">
+
+
+                <TextView
+                    android:id="@+id/tvPereves"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Перевес"
+                    android:textColor="@color/color_text_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPerevesKg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="(15 кг)"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvPereves"
+                    app:layout_constraintStart_toEndOf="@+id/tvPereves"
+                    app:layout_constraintTop_toTopOf="@+id/tvPereves" />
+
+                <TextView
+                    android:id="@+id/tvPerevesPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="+ 1000 Р"
+                    android:textColor="@color/main_blue"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvPerevesKg"
+                    app:layout_constraintStart_toEndOf="@+id/tvPerevesKg"
+                    app:layout_constraintTop_toTopOf="@+id/tvPerevesKg" />
+
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchPereves"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    app:thumbTint="@color/white"
+                    app:trackTint="@drawable/switch_selector" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="31dp"
+                android:layout_marginTop="10dp">
+
+
+                <TextView
+                    android:id="@+id/tvInsurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Страхование"
+                    android:textColor="@color/color_text_gray"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tvInsurancePrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="+ 1000 Р"
+                    android:textColor="@color/main_blue"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvInsurance"
+                    app:layout_constraintStart_toEndOf="@+id/tvInsurance"
+                    app:layout_constraintTop_toTopOf="@+id/tvInsurance" />
+
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/switchInsurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:thumbTint="@color/white"
+                    app:trackTint="@drawable/switch_selector" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="-10dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/item_flight_background"
+                app:cardCornerRadius="32dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="31dp"
+                    android:layout_marginEnd="31dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="0.1"
+                            android:src="@drawable/ic_card_title" />
+
+                        <TextView
+                            android:id="@+id/tvBuyTicket"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="0.9"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="center_vertical"
+                            android:text="Оплата билета"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvSomeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Какой-то текст"
+                        android:textColor="@color/color_text_gray"
+                        android:textSize="14sp"
+                        />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/gradient_item_flight"
+                        android:orientation="horizontal"></LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llPriceTicket"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/tvPriceTicketTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Стоимость билета"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp"
+                            android:gravity="start"/>
+
+                        <TextView
+                            android:id="@+id/tvPriceTicketPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text=" 16002 Р"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp"
+                            android:gravity="end"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llHandBagage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/tvHandBagageItogTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="start"
+                            android:text="Ручная кладь"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvHandBagageItogPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+
+                            android:fontFamily="@font/montserrat_regular"
+                            android:gravity="end"
+                            android:text="+ 2990 Р"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llBagage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/tvBagageItogTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="start"
+                            android:text="Багаж 23 кг"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvBagageItogPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+
+                            android:fontFamily="@font/montserrat_regular"
+                            android:gravity="end"
+                            android:text="+ 2990 Р"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll2xBagage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/tv2xBagageItogTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="start"
+                            android:text="Багаж 2х23 кг"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv2xBagageItogPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+
+                            android:fontFamily="@font/montserrat_regular"
+                            android:gravity="end"
+                            android:text="+ 8550 Р"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llTakeAnimal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/tvTakeAnimalItogTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="start"
+                            android:text="Домашнее животное"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvTakeAnimalItogPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+
+                            android:fontFamily="@font/montserrat_regular"
+                            android:gravity="end"
+                            android:text="+ 2990 Р"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llPereves"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/tvPerevesItogTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="start"
+                            android:text="Перевес"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvPerevesItogPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+
+                            android:fontFamily="@font/montserrat_regular"
+                            android:gravity="end"
+                            android:text="+ 1000 Р"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llInsurance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/tvInsuranceTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="start"
+                            android:text="Страхование"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tvInsuranceItogPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+
+                            android:fontFamily="@font/montserrat_regular"
+                            android:gravity="end"
+                            android:text="+ 1000 Р"
+                            android:textColor="@color/color_text_gray"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llItog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/tvItogTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.7"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Итого"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:gravity="start"/>
+
+                        <TextView
+                            android:id="@+id/tvItogItogPrice"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="+ 1000 Р"
+                            android:textColor="@color/main_blue"
+                            android:textSize="16sp"
+                            android:gravity="end"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBuyTicket"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="70dp"
+                        android:backgroundTint="@color/main_blue"
+                        android:fontFamily="@font/inter_v"
+                        android:text="Оплатить"
+                        android:textAllCaps="false"
+                        android:textSize="16sp"
+                        app:cornerRadius="10dp"
+
+                        />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

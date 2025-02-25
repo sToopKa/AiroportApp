@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.airport_list.AirportListFragment">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvTopFilter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-70dp"
+        android:backgroundTint="@color/color_filter"
+        app:layout_constraintBottom_toBottomOf="@+id/cvTopHeader"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcFilter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="31dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTitleFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Фильтр рейсов"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/rcFilter"
+                app:layout_constraintStart_toStartOf="@+id/rcFilter" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvTopHeader"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="-5dp"
+        android:backgroundTint="@color/main_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+            <TextView
+                android:id="@+id/tvTabloHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Онлайн табло"
+                android:textColor="@color/white"
+                android:textSize="29sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivHeaderPhoto" />
+            <LinearLayout
+                android:id="@+id/llTopDataFull"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginEnd="31dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTabloHeader">
+
+                <LinearLayout
+                    android:id="@+id/llTopData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvFlight"
+                        android:layout_width="match_parent"
+                        android:layout_height="85dp"
+                        app:cardCornerRadius="12dp"
+                        >
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="6"
+                                    android:orientation="vertical">
+
+                                    <androidx.constraintlayout.widget.ConstraintLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="42dp">
+
+                                        <ImageView
+                                            android:id="@+id/imageView8"
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_marginStart="10dp"
+                                            android:src="@drawable/ic_departure_arrow"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent" />
+
+                                        <com.google.android.material.textfield.TextInputLayout
+                                            android:id="@+id/tICityDeparture"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="10dp"
+                                            android:layout_marginEnd="10dp"
+                                            app:boxBackgroundMode="none"
+                                            app:boxCollapsedPaddingTop="2dp"
+                                            app:hintAnimationEnabled="false"
+                                            app:hintEnabled="false"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintStart_toEndOf="@+id/imageView8"
+                                            app:layout_constraintTop_toTopOf="parent">
+
+                                            <com.google.android.material.textfield.TextInputEditText
+                                                android:id="@+id/edCityDeparture"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:ellipsize="end"
+                                                android:fontFamily="@font/inter_v"
+                                                android:hint="Якутск"
+                                                android:inputType="text"
+                                                android:maxLines="1"
+                                                android:padding="0dp"
+                                                android:textColor="@color/black"
+                                                android:textColorHint="#555555"
+                                                android:textSize="16sp" />
+                                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                    <View
+                                        android:id="@+id/view"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="1dp"
+                                        android:background="@color/diviver"
+                                        android:backgroundTint="@color/diviver" />
+
+                                    <androidx.constraintlayout.widget.ConstraintLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="42dp">
+
+                                        <ImageView
+                                            android:id="@+id/imageView7"
+                                            android:layout_width="20dp"
+                                            android:layout_height="20dp"
+                                            android:layout_marginStart="10dp"
+                                            android:src="@drawable/ic_arrive_arrow"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintStart_toStartOf="parent"
+                                            app:layout_constraintTop_toTopOf="parent" />
+
+                                        <com.google.android.material.textfield.TextInputLayout
+                                            android:id="@+id/tICityArrive"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="10dp"
+                                            android:layout_marginEnd="10dp"
+                                            app:boxBackgroundMode="none"
+                                            app:boxCollapsedPaddingTop="2dp"
+                                            app:hintAnimationEnabled="false"
+                                            app:hintEnabled="false"
+                                            app:layout_constraintBottom_toBottomOf="parent"
+                                            app:layout_constraintEnd_toEndOf="parent"
+                                            app:layout_constraintStart_toEndOf="@+id/imageView7"
+                                            app:layout_constraintTop_toTopOf="parent">
+
+                                            <com.google.android.material.textfield.TextInputEditText
+                                                android:id="@+id/edCityArrive"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:ellipsize="end"
+                                                android:fontFamily="@font/inter_v"
+                                                android:hint="Иркутск"
+                                                android:inputType="text"
+                                                android:maxLines="1"
+                                                android:padding="0dp"
+                                                android:textColor="@color/black"
+                                                android:textColorHint="#555555"
+                                                android:textSize="16sp" />
+                                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                                </LinearLayout>
+
+                                <ImageView
+                                    android:id="@+id/ivReverseTablo"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginEnd="20dp"
+                                    android:layout_weight="1"
+                                    android:src="@drawable/ic_reverse" />
+
+                            </LinearLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvCalendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        android:layout_marginTop="20dp"
+                        app:cardCornerRadius="12dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tIDepartureDate"
+                                style="@style/CustomEndIconStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1"
+                                app:boxBackgroundMode="none"
+                                app:boxCollapsedPaddingTop="0dp"
+                                app:endIconContentDescription="Выбрать дату"
+                                app:endIconDrawable="@drawable/calendar_icon_with_padding"
+                                app:endIconMinSize="20dp"
+                                app:endIconMode="custom"
+                                app:endIconTint="@color/main_blue"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edDepartureDate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:clickable="true"
+                                    android:ellipsize="end"
+                                    android:focusable="false"
+                                    android:fontFamily="@font/inter_v"
+                                    android:gravity="center_vertical"
+                                    android:hint="12.12.2025"
+                                    android:inputType="text"
+                                    android:maxLines="1"
+                                    android:paddingStart="4dp"
+                                    android:paddingTop="0dp"
+                                    android:paddingEnd="32dp"
+                                    android:paddingBottom="0dp"
+                                    android:textColor="@color/black"
+                                    android:textColorHint="#555555"
+                                    android:textSize="16sp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tIArriveDate"
+                                style="@style/CustomEndIconStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginEnd="8dp"
+                                android:layout_weight="1"
+                                app:boxBackgroundMode="none"
+                                app:boxCollapsedPaddingTop="0dp"
+                                app:endIconContentDescription="Выбрать дату"
+                                app:endIconDrawable="@drawable/calendar_icon_with_padding"
+                                app:endIconMinSize="20dp"
+                                app:endIconMode="custom"
+                                app:endIconTint="@color/main_blue"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edArriveDate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:clickable="true"
+                                    android:ellipsize="end"
+                                    android:focusable="false"
+                                    android:fontFamily="@font/inter_v"
+                                    android:gravity="center_vertical"
+                                    android:hint="12.12.2025"
+                                    android:inputType="text"
+                                    android:maxLines="1"
+                                    android:paddingStart="4dp"
+                                    android:paddingTop="0dp"
+                                    android:paddingEnd="32dp"
+                                    android:paddingBottom="0dp"
+                                    android:textColor="@color/black"
+                                    android:textColorHint="#555555"
+                                    android:textSize="16sp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShow"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/orange_tint"
+                    android:fontFamily="@font/inter_v"
+                    android:text="Поиск билета"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    app:cornerRadius="10dp"
+                     />
+
+            </LinearLayout>
+
+
+
+
+
+
+
+            <ImageView
+                android:id="@+id/ivHeaderPhoto"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_user_photo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvWelcomeHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Здравствуйте,"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/ivHeaderPhoto"
+                app:layout_constraintTop_toTopOf="@+id/ivHeaderPhoto" />
+
+            <TextView
+                android:id="@+id/tvNameHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="20dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat_bold"
+                android:lineSpacingExtra="2dp"
+                android:maxLines="3"
+                android:text="Уважаемый пользователь"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/ivSettings"
+                app:layout_constraintStart_toEndOf="@+id/ivHeaderPhoto"
+                app:layout_constraintTop_toBottomOf="@+id/tvWelcomeHeader" />
+
+            <ImageView
+                android:id="@+id/ivSettings"
+                android:layout_width="110dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="31dp"
+                android:src="@drawable/ic_settings"
+                app:layout_constraintBottom_toBottomOf="@+id/tvNameHeader"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvWelcomeHeader" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcPlane"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvTopFilter" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

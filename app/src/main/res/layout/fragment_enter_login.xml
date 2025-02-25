@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvTopImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="4dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.CardView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_top_login">
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/gradient_cardview"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"></LinearLayout>
+            </FrameLayout>
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="31dp"
+                android:layout_marginBottom="50dp"
+                android:foregroundGravity="center"
+                android:src="@drawable/ic_top_title_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/inter_v"
+        android:text="@string/welcome"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvTopImage" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tILLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="31dp"
+        app:boxBackgroundMode="none"
+        app:boxCollapsedPaddingTop="2dp"
+        app:hintAnimationEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvWelcome"
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcome">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edLoginIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_input_radius"
+
+            android:fontFamily="@font/inter_v"
+            android:hint="@string/login"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="#555555"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tILPass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:boxBackgroundMode="none"
+        app:boxCollapsedPaddingTop="2dp"
+        app:layout_constraintEnd_toEndOf="@+id/tILLogin"
+        app:layout_constraintStart_toStartOf="@+id/tILLogin"
+        app:layout_constraintTop_toBottomOf="@+id/tILLogin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edPassIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/text_input_radius"
+            android:fontFamily="@font/inter_v"
+            android:hint="@string/password"
+            android:inputType="text|textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="#555555"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/inter_v"
+        android:text="@string/forgot_password"
+
+        android:textColor="@color/main_blue"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tILPass"
+        app:layout_constraintTop_toBottomOf="@id/tILPass" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnReg"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/main_blue"
+        android:fontFamily="@font/inter_v"
+        android:text="@string/authorize"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/tILPass"
+        app:layout_constraintStart_toStartOf="@+id/tILPass"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgotPassword" />
+
+    <LinearLayout
+        android:id="@+id/llReg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/btnReg"
+        app:layout_constraintStart_toStartOf="@+id/btnReg"
+        app:layout_constraintTop_toBottomOf="@+id/btnReg">
+
+        <TextView
+            android:id="@+id/tvDontAcc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_v"
+            android:text="@string/not_acc"
+            android:textColor="@color/color_text_gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvReg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/inter_v"
+            android:text="@string/registration_1"
+            android:textColor="@color/main_blue" />
+    </LinearLayout>
+
+    <View
+
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tvEnterWith"
+        app:layout_constraintEnd_toEndOf="@+id/llReg"
+        app:layout_constraintStart_toStartOf="@+id/llReg" />
+
+    <TextView
+        android:id="@+id/tvEnterWith"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/inter_v"
+        android:text="@string/enter_with"
+        android:textColor="@color/color_text_gray"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/llHelp"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintStart_toStartOf="@+id/view2" />
+
+
+    <LinearLayout
+        android:id="@+id/llHelp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvEnterWith"
+        app:layout_constraintStart_toStartOf="@+id/tvEnterWith">
+
+        <ImageView
+            android:id="@+id/ivGoogle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_google" />
+
+        <ImageView
+            android:id="@+id/ivApple"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+
+            android:layout_marginStart="5dp"
+            android:src="@drawable/ic_apple" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

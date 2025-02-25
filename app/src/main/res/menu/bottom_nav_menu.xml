@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/your_tickets"
+        android:icon="@drawable/ic_ticket_flight"
+        android:title="Билеты" />
+
+    <item
+        android:id="@+id/favorite_flights"
+        android:icon="@drawable/ic_favorite_menu"
+        android:title="Избранное"
+        />
+
+    <item
+        android:id="@+id/profil_info"
+        android:icon="@drawable/ic_profile_menu"
+        android:title="Профиль" />
+
+    <item
+        android:id="@+id/airoport_list"
+        android:icon="@drawable/ic_home_menu"
+        android:title="Домой" />
+
+</menu>
