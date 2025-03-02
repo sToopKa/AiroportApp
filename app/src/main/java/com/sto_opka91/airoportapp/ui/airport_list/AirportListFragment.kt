@@ -75,65 +75,16 @@ class AirportListFragment : Fragment() {
     private fun initEvents() {
         binding.ivSettings.setOnClickListener { viewModel.onPlaneClick(AirportListActions.NavigateToSettings)
         }
-        binding.btnShow.setOnClickListener { viewModel.onPlaneClick(AirportListActions.NavigateToBuyTicketFlight)
-        }
-        binding.ivReverseTablo.setOnClickListener {
-            val departureCityText = binding.edCityDeparture.text.toString()
-            val arriveCityText = binding.edCityArrive.text.toString()
-
-            binding.edCityDeparture.setText(arriveCityText)
-            binding.edCityArrive.setText(departureCityText)
-        }
 
 
-        binding.edDepartureDate.setOnClickListener {
-            showDatePicker(
-                fragment = this,
-                onDateSelected = { date ->
-                    binding.edDepartureDate.setText(date)
-                },
-                onReset = {
-                    binding.edDepartureDate.setText("")
-                }
-            )
-        }
 
 
-        binding.edArriveDate.setOnClickListener {
-            showDatePicker(
-                fragment = this,
-                onDateSelected = { date ->
-                    binding.edArriveDate.setText(date)
-                },
-                onReset = {
-                    binding.edArriveDate.setText("")
-                }
-            )
-        }
+
+
+
+
     }
-    fun showDatePicker(
-        fragment: Fragment,
-        onDateSelected: (String) -> Unit,
-        onReset: () -> Unit
-    ) {
-        val dialog = MaterialDatePickerDialog.Builder
-            .setTitle("Выберите дату")
-            .setNegativeButtonText("Отмена")
-            .setPositiveButtonText("Готово")
-            .setDate(System.currentTimeMillis())
-            .setDateFormat(MaterialDatePickerView.DateFormat.DD_MMMM_YYYY)
-            .setFadeAnimation(350L, 1050L, 0.3f, 0.7f)
-            .build()
 
-        dialog.setOnDatePickListener(object : MaterialDatePickerView.OnDatePickedListener {
-            override fun onDatePicked(date: Long) {
-                val formattedDate = SimpleDateFormat("dd.MM.yyyy", Locale("ru")).format(Date(date))
-                onDateSelected(formattedDate)
-            }
-        })
-
-        dialog.show(fragment.childFragmentManager, "DATE_PICKER")
-    }
 
 
     private fun initPlaneAdapter(): FlightAdapter =
@@ -176,34 +127,18 @@ class AirportListFragment : Fragment() {
                 // Проверяем только позицию первого элемента
                 val shouldHide = firstVisibleItemPosition > 0
 
-                if (shouldHide != isHidden) {
-                    isHidden = shouldHide
-                    // Анимируем только если изменилось состояние видимости
-                    llTopData.animate()
-                        .alpha(if (shouldHide) 0f else 1f)
-                        .setDuration(150)
-                        .withEndAction {
-                            llTopData.visibility = if (shouldHide) View.GONE else View.VISIBLE
-                        }
-                        .start()
-                }
+
             }
 
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    // Когда скролл остановился, проверяем нужно ли показать/скрыть элементы
+
                     val layoutManager = recyclerView.layoutManager as LinearLayoutManager
                     val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
 
                     if (firstVisibleItemPosition == 0 && lastDy < 0) {
-                        // Показываем элементы, если скроллим вверх и первый элемент виден
-                        llTopData.visibility = View.VISIBLE
-                        llTopData.animate()
-                            .alpha(1f)
-                            .setDuration(150)
-                            .start()
-                        isHidden = false
+
                     }
                 }
             }

@@ -13,5 +13,6 @@ data class SettingsStateHolder(
     val telephone: String? = null,
     val cityDeparture: String? = null,
     val genre: String? = "male",
+    val password: String = "",
     override val viewType: ViewType = ViewType.Loading
-):ViewState
+): ViewState

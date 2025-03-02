@@ -161,11 +161,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
         android:foregroundGravity="center"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/btnReg"
         app:layout_constraintStart_toStartOf="@+id/btnReg"
         app:layout_constraintTop_toBottomOf="@+id/btnReg">
@@ -187,60 +185,6 @@
             android:fontFamily="@font/inter_v"
             android:text="@string/registration_1"
             android:textColor="@color/main_blue" />
-    </LinearLayout>
-
-    <View
-
-        android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/tvEnterWith"
-        app:layout_constraintEnd_toEndOf="@+id/llReg"
-        app:layout_constraintStart_toStartOf="@+id/llReg" />
-
-    <TextView
-        android:id="@+id/tvEnterWith"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/inter_v"
-        android:text="@string/enter_with"
-        android:textColor="@color/color_text_gray"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/llHelp"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintStart_toStartOf="@+id/view2" />
-
-
-    <LinearLayout
-        android:id="@+id/llHelp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:foregroundGravity="center"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvEnterWith"
-        app:layout_constraintStart_toStartOf="@+id/tvEnterWith">
-
-        <ImageView
-            android:id="@+id/ivGoogle"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_google" />
-
-        <ImageView
-            android:id="@+id/ivApple"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-
-            android:layout_marginStart="5dp"
-            android:src="@drawable/ic_apple" />
     </LinearLayout>
 
 

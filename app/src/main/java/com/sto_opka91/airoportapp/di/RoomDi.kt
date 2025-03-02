@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Room
 import com.sto_opka91.airoportapp.data.CardRepositoryImpl
 import com.sto_opka91.airoportapp.data.FavoriteFlightRepositoryImpl
+import com.sto_opka91.airoportapp.data.PassengerRepositoryImpl
 import com.sto_opka91.airoportapp.data.UserRepositoryImpl
 import com.sto_opka91.airoportapp.database.DatabaseAirport
 import com.sto_opka91.airoportapp.database.RoomDao
 import com.sto_opka91.airoportapp.repository.CardInfoRepository
 import com.sto_opka91.airoportapp.repository.FavoriteFlightRepository
+import com.sto_opka91.airoportapp.repository.PassengerReporitory
 import com.sto_opka91.airoportapp.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -51,4 +53,11 @@ object RoomDi {
     fun provideCardInfoRepository(roomDao: RoomDao): CardInfoRepository {
         return CardRepositoryImpl(roomDao)
     }
+
+    @Provides
+    @Singleton
+    fun providePassengerRepository(roomDao: RoomDao): PassengerReporitory {
+        return PassengerRepositoryImpl(roomDao)
+    }
+
 }

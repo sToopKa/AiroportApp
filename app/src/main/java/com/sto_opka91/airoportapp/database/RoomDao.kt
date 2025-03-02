@@ -7,10 +7,17 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.sto_opka91.airoportapp.models.room.CardInfoEntity
 import com.sto_opka91.airoportapp.models.room.FavoriteFlightEntity
+import com.sto_opka91.airoportapp.models.room.Passenger
 import com.sto_opka91.airoportapp.models.room.UserInfoEntity
 
 @Dao
 interface RoomDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertPassenger(passenger: Passenger): Long
+
+    @Query("SELECT * FROM passengers")
+    suspend fun getAllPassengers(): List<Passenger>
 
     @Query("DELETE FROM user_info WHERE id = :userId")
     suspend fun deleteUserById(userId: Int)
@@ -77,6 +84,9 @@ interface RoomDao {
 
     @Query("UPDATE user_info SET genre = :genre WHERE id = :id")
     suspend fun updateGenre(id: Int, genre: String)
+
+    @Query("UPDATE user_info SET password = :password WHERE id = :id")
+    suspend fun updatePassword(id: Int, password: String)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun createCardInfo(card: CardInfoEntity)

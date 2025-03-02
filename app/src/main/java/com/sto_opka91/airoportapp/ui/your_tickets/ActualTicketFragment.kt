@@ -1,24 +1,37 @@
 package com.sto_opka91.airoportapp.ui.your_tickets
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.StateListDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.RadioButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sto_opka91.airoportapp.R
 import com.sto_opka91.airoportapp.databinding.AlertDialogLayoutBinding
 import com.sto_opka91.airoportapp.databinding.FragmentActualTicketBinding
 import com.sto_opka91.airoportapp.databinding.FragmentFinishedTicketBinding
+import com.sto_opka91.airoportapp.models.room.Passenger
+import com.sto_opka91.airoportapp.ui.your_tickets.recyclerview.PassengerAdapter
 import com.sto_opka91.airoportapp.utils.InfoStatus
 import com.sto_opka91.airoportapp.utils.StatusFlight
 import com.sto_opka91.airoportapp.utils.repeatOnCreated
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ActualTicketFragment : Fragment() {
@@ -27,6 +40,9 @@ class ActualTicketFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: YourTicketViewModel by activityViewModels()
+
+    // Объявляем адаптер
+    private lateinit var passengerAdapter: PassengerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,8 +54,14 @@ class ActualTicketFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Инициализируем адаптер
+        setupRecyclerView()
+
         initData()
-        setupPassengerToggle()
+        viewModel.loadPassengers() // Загружаем пассажиров
+        observePassengers()
+
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -54,8 +76,34 @@ class ActualTicketFragment : Fragment() {
         binding.btnHandBagage.setOnClickListener {
             showInform(requireContext(), "Раздел находится в разработке. Переход на оплату ручной клади")
         }
-
     }
+
+    private fun setupRecyclerView() {
+        passengerAdapter = PassengerAdapter { passenger ->
+            viewModel.selectPassenger(passenger)
+        }
+
+        binding.rcPassenger.apply {
+            adapter = passengerAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            // Добавляем отступы между элементами
+            addItemDecoration(object : RecyclerView.ItemDecoration() {
+                override fun getItemOffsets(
+                    outRect: Rect,
+                    view: View,
+                    parent: RecyclerView,
+                    state: RecyclerView.State
+                ) {
+                    // Добавляем отступ справа для всех элементов, кроме последнего
+                    val position = parent.getChildAdapterPosition(view)
+                    if (position != parent.adapter?.itemCount?.minus(1)) {
+                        outRect.right = resources.getDimensionPixelSize(R.dimen.passenger_item_margin)
+                    }
+                }
+            })
+        }
+    }
+
 
     private fun initData() {
 
@@ -125,48 +173,7 @@ class ActualTicketFragment : Fragment() {
         }
     }
 
-    private fun setupPassengerToggle() = with(binding) {
-        // Установка начальных значений для первого пассажира
-        updatePassengerInfo(
-            name = "Иванов Вадим Вадимович",
-            classType = "Эконом",
-            place = "F62",
-            bagage = "Не включен" to Color.RED,
-            handBagage = "Оплачено" to Color.parseColor("#006FFD")
-        )
 
-        toggleGender.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.btnFirst -> {
-                    updatePassengerInfo(
-                        name = "Иванов Вадим Вадимович",
-                        classType = "Эконом",
-                        place = "F62",
-                        bagage = "Не включен" to Color.RED,
-                        handBagage = "Оплачено" to Color.parseColor("#006FFD")
-                    )
-                }
-                R.id.btnTwo -> {
-                    updatePassengerInfo(
-                        name = "Петров Игорь Игоревич",
-                        classType = "Первый класс",
-                        place = "D62",
-                        bagage = "Включен" to Color.parseColor("#006FFD"),
-                        handBagage = "Оплачено" to Color.parseColor("#006FFD")
-                    )
-                }
-                R.id.btnTree -> {
-                    updatePassengerInfo(
-                        name = "Сидоров Семен Семенович",
-                        classType = "Бизнес класс",
-                        place = "A62",
-                        bagage = "Включен" to Color.parseColor("#006FFD"),
-                        handBagage = "Не оплачено" to Color.RED
-                    )
-                }
-            }
-        }
-    }
 
     private fun updatePassengerInfo(
         name: String,
@@ -181,7 +188,7 @@ class ActualTicketFragment : Fragment() {
 
         tvBagageValue.text = bagage.first
         tvBagageValue.setTextColor(bagage.second)
-
+        tvPlaceValue.text = "F13"
         tvHandBagageValue.text = handBagage.first
         tvHandBagageValue.setTextColor(handBagage.second)
     }
@@ -198,6 +205,44 @@ class ActualTicketFragment : Fragment() {
         bindingAlert.Image2.setOnClickListener { alertDialog.cancel() }
         alertDialog.show()
     }
+
+    private fun observePassengers() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.passengerState.collect { state ->
+                if (state.passengers.isEmpty()) {
+                    binding.tvNoPassengers.visibility = View.VISIBLE
+                    binding.passengerInfoContainer.visibility = View.GONE
+                    binding.rcPassenger.visibility = View.GONE
+                } else {
+                    // Показываем список пассажиров
+                    binding.tvNoPassengers.visibility = View.GONE
+                    binding.rcPassenger.visibility = View.VISIBLE
+                    binding.passengerInfoContainer.visibility = View.VISIBLE
+
+                    // Обновляем данные в адаптере
+                    passengerAdapter.submitList(state.passengers)
+
+                    // Обновляем выбранного пассажира
+                    passengerAdapter.updateSelectedPassenger(state.selectedPassenger?.id.toString())
+
+                    // Обновляем информацию о выбранном пассажире
+                    state.selectedPassenger?.let { passenger ->
+                        updatePassengerInfo(
+                            name = passenger.fio,
+                            classType = passenger.classType,
+                            place = passenger.place,
+                            bagage = passenger.baggage to if (passenger.baggage == "Включен") Color.parseColor("#006FFD") else Color.RED,
+                            handBagage = passenger.handBaggage to if (passenger.handBaggage == "Оплачено") Color.parseColor("#006FFD") else Color.RED
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -89,21 +89,7 @@ class PrivateInfoFragment : Fragment() {
         binding.tvDeleteAcc.setOnClickListener {
             viewModel.onDeleteAccountClick()
         }
-        binding.ivTgPrivate.setOnClickListener {
-            showInform(requireContext(), "Раздел находится в разработке.")
-        }
 
-        binding.ivApplePrivate.setOnClickListener {
-            showInform(requireContext(), "Раздел находится в разработке.")
-        }
-
-        binding.ivGooglePrivate.setOnClickListener {
-            showInform(requireContext(), "Раздел находится в разработке.")
-        }
-
-        binding.ivVkPrivate.setOnClickListener {
-            showInform(requireContext(), "Раздел находится в разработке.")
-        }
     }
 
     private fun initGenreSelection() {
@@ -118,6 +104,8 @@ class PrivateInfoFragment : Fragment() {
 
         }
     }
+
+
 
 
 
@@ -140,18 +128,22 @@ class PrivateInfoFragment : Fragment() {
                             edTelephone.setText(state.telephone)
                             edCityDeparture.setText(state.cityDeparture)
                             edBirthDay.setText(state.birthDate)
+                            edChangePasswordFirst.setText(state.password)
+                            edChangePasswordSecond.setText(state.password)
 
                             when (state.genre) {
                                 "male" -> toggleGender.check(R.id.btnMale)
                                 "female" -> toggleGender.check(R.id.btnFemale)
                             }
                         }
+
+
+                        checkPasswordsMatch()
+
                     } finally {
 
                     }
                 }
-
-
             }
         }
 
@@ -302,7 +294,7 @@ class PrivateInfoFragment : Fragment() {
                     else -> "+${digits[0]} (${digits.substring(1, 4)}) ${digits.substring(4, 7)} ${digits.substring(7, 9)} ${digits.substring(9)}"
                 }
 
-                // Обновляем текст без рекурсии
+
                 if (formatted != binding.edTelephone.text.toString()) {
                     binding.edTelephone.removeTextChangedListener(this)
                     binding.edTelephone.setText(formatted)
@@ -312,6 +304,58 @@ class PrivateInfoFragment : Fragment() {
             }
         })
         binding.edCityDeparture.addTextChangedListener(createTextWatcher("cityDeparture"))
+
+        binding.btnChangePass.setOnClickListener {
+            val firstPassword = binding.edChangePasswordFirst.text.toString()
+            val secondPassword = binding.edChangePasswordSecond.text.toString()
+
+            val success = viewModel.updatePassword(firstPassword, secondPassword)
+            if (success) {
+                showInform(requireContext(), "Пароль успешно изменен")
+            } else {
+                showInform(requireContext(), "Пароли не совпадают")
+            }
+        }
+
+        binding.edChangePasswordFirst.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                checkPasswordsMatch()
+            }
+        })
+
+        binding.edChangePasswordSecond.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                checkPasswordsMatch()
+            }
+        })
+    }
+
+    private fun checkPasswordsMatch() {
+        val firstPassword = binding.edChangePasswordFirst.text.toString()
+        val secondPassword = binding.edChangePasswordSecond.text.toString()
+        val currentPassword = viewModel.settingsState.value.password ?: ""
+
+
+        val passwordsChanged = firstPassword.isNotEmpty() && secondPassword.isNotEmpty() &&
+                (firstPassword != currentPassword || secondPassword != currentPassword)
+
+        binding.btnChangePass.visibility = if (passwordsChanged && firstPassword == secondPassword) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
+
+        if (firstPassword.isNotEmpty() && secondPassword.isNotEmpty()) {
+            val isMatch = firstPassword == secondPassword
+            val backgroundRes = if (isMatch) R.drawable.text_input_radius_blue else R.drawable.text_input_radius_red
+
+            binding.edChangePasswordFirst.background = ContextCompat.getDrawable(requireContext(), backgroundRes)
+            binding.edChangePasswordSecond.background = ContextCompat.getDrawable(requireContext(), backgroundRes)
+        }
     }
 
     private fun createTextWatcher(field: String): TextWatcher {
@@ -338,6 +382,8 @@ class PrivateInfoFragment : Fragment() {
         bindingAlert.Image2.setOnClickListener { alertDialog.cancel() }
         alertDialog.show()
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

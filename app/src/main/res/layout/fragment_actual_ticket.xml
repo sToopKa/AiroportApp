@@ -24,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/btnBack"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="31dp"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/ic_back_white"
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="Новосибирск"
+                android:text="Москва"
                 android:textColor="@color/white"
                 android:textSize="16sp"
 
@@ -597,43 +597,32 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <com.google.android.material.card.MaterialCardView
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/rcPassenger"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:layout_marginTop="5dp"
+               android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/tvNoPassengers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/cv_background_toggle"
-                app:cardCornerRadius="16dp"
-
-                app:cardElevation="0dp">
-
-                <RadioGroup
-                    android:id="@+id/toggleGender"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="4dp">
-
-                    <RadioButton
-                        android:id="@+id/btnFirst"
-                        style="@style/GenderToggleButton"
-                        android:checked="true"
-                        android:text="Иванов В.В."
-                        app:cardCornerRadius="12dp" />
-
-                    <RadioButton
-                        android:id="@+id/btnTwo"
-                        style="@style/GenderToggleButton"
-                        android:text="Петров И.И."
-                        app:cardCornerRadius="12dp" />
-
-                    <RadioButton
-                        android:id="@+id/btnTree"
-                        style="@style/GenderToggleButton"
-                        android:text="Сидоров С.С."
-                        app:cardCornerRadius="12dp" />
-
-                </RadioGroup>
-
-            </com.google.android.material.card.MaterialCardView>
+                android:text="Пока нет пассажиров"
+                android:textSize="16sp"
+                android:textColor="@color/color_text_gray"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                />
+        <LinearLayout
+            android:id="@+id/passengerInfoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -821,6 +810,9 @@
                     android:textColor="@color/black"
                     android:textSize="16sp" />
             </LinearLayout>
+        </LinearLayout>
+
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnHandBagage"

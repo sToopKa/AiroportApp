@@ -202,8 +202,9 @@
 
             <ImageView
                 android:id="@+id/btnBack"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
                 android:layout_marginStart="31dp"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/ic_back_white"
@@ -214,7 +215,7 @@
                 android:id="@+id/tvSettingsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Настройки"
                 android:textColor="@color/white"

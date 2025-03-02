@@ -103,12 +103,7 @@ class EnterLoginFragment : Fragment() {
         btnReg.setOnClickListener{
             viewModel.checkuser()
         }
-        ivApple.setOnClickListener {
-            showInform(requireContext(), "Раздел находится в разработке")
-        }
-        ivGoogle.setOnClickListener {
-            showInform(requireContext(), "Раздел находится в разработке")
-        }
+
         tvReg.setOnClickListener {
             findNavController().navigate(R.id.action_enterLoginFragment_to_promtLoginFragment)
         }

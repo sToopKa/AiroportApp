@@ -100,6 +100,7 @@ class SettingsViewModel @Inject constructor(
                                 birthDate = info.birthDay ?: "",
                                 photoUri = info.photoUri,
                                 genre = info.genre ?: "man",
+                                password = info.password ?: "",
                                 viewType = ViewType.Loaded
                             )
                         }
@@ -128,6 +129,24 @@ class SettingsViewModel @Inject constructor(
                 Log.e("myLog", "Error updating $field: ${e.message}")
             }
         }
+    }
+
+    fun updatePassword(firstPassword: String, secondPassword: String): Boolean {
+        if (firstPassword != secondPassword) {
+            return false
+        }
+
+        viewModelScope.launch {
+            try {
+                userRepository.updateUserInfo(1, "password", firstPassword)
+                _settingsState.update { state ->
+                    state.copy(password = firstPassword)
+                }
+            } catch (e: Exception) {
+                Log.e("myLog", "Error updating password: ${e.message}")
+            }
+        }
+        return true
     }
 
 }

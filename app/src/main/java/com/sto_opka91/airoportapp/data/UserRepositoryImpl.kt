@@ -84,6 +84,7 @@ class UserRepositoryImpl @Inject constructor(private val roomDao: RoomDao): User
                 "cityDeparture" -> roomDao.updateCityDeparture(id, value)
                 "birthDay" -> roomDao.updateBirthDate(id, value)
                 "genre" -> roomDao.updateGenre(id, value)
+                "password" -> roomDao.updatePassword(id, value)
             }
         } catch (e: Exception) {
             Log.e("myLog", "Error updating $field: ${e.message}")

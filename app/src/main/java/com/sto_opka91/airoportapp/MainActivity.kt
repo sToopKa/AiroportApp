@@ -2,7 +2,9 @@ package com.sto_opka91.airoportapp
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -14,8 +16,12 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.navigation.NavigationBarView
 import com.sto_opka91.airoportapp.databinding.ActivityMainBinding
 import com.sto_opka91.airoportapp.ui.airport_list.AirportListFragment
+import com.sto_opka91.airoportapp.utils.CustomBottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +30,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private var isNavigating = false
+
+
+    private val bottomNavFragments = mapOf(
+        R.id.yourTicketsFragment to R.id.your_tickets,
+        R.id.favoriteFlightFragment to R.id.favorite_flights,
+        R.id.buyTicketAiroportFragment to R.id.buy_tickets,
+        R.id.privateInfoFragment to R.id.profil_info,
+        R.id.airportListFragment to R.id.airoport_list
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,17 +52,14 @@ class MainActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                // Получаем текущий фрагмент
                 val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as? NavHostFragment
                 val currentFragment = navHostFragment?.childFragmentManager?.fragments?.get(0)
 
                 when (currentFragment) {
                     is AirportListFragment -> {
-                        // Если мы на главном экране, показываем диалог подтверждения выхода
                         finish()
                     }
                     else -> {
-                        // Для остальных фрагментов используем стандартную навигацию назад
                         isEnabled = false
                         navController.popBackStack()
                         isEnabled = true
@@ -56,7 +68,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
 
     private fun setupBottomNavigation() {
         // Настраиваем внешний вид неактивных элементов
@@ -71,30 +82,24 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // Настраиваем навигацию
         binding.navView.setOnItemSelectedListener { item ->
             if (!isNavigating) {
                 isNavigating = true
                 when (item.itemId) {
                     R.id.your_tickets -> {
-                        if (navController.currentDestination?.id != R.id.yourTicketsFragment) {
-                            navController.navigate(R.id.yourTicketsFragment)
-                        }
+                        navController.navigate(R.id.yourTicketsFragment)
                     }
                     R.id.favorite_flights -> {
-                        if (navController.currentDestination?.id != R.id.favoriteFlightFragment) {
-                            navController.navigate(R.id.favoriteFlightFragment)
-                        }
+                        navController.navigate(R.id.favoriteFlightFragment)
+                    }
+                    R.id.buy_tickets -> {
+                        navController.navigate(R.id.buyTicketAiroportFragment)
                     }
                     R.id.profil_info -> {
-                        if (navController.currentDestination?.id != R.id.privateInfoFragment) {
-                            navController.navigate(R.id.privateInfoFragment)
-                        }
+                        navController.navigate(R.id.privateInfoFragment)
                     }
                     R.id.airoport_list -> {
-                        if (navController.currentDestination?.id != R.id.airportListFragment) {
-                            navController.navigate(R.id.airportListFragment)
-                        }
+                        navController.navigate(R.id.airportListFragment)
                     }
                 }
                 isNavigating = false
@@ -105,7 +110,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupNavigationVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-
             val hideBottomNavFragments = listOf(
                 R.id.enterLoginFragment,
                 R.id.promtLoginFragment
@@ -117,15 +121,29 @@ class MainActivity : AppCompatActivity() {
                 View.VISIBLE
             }
 
-            // Обновляем выбранный элемент в меню без вызова навигации
-            if (!isNavigating) {
-                when (destination.id) {
-                    R.id.yourTicketsFragment -> binding.navView.selectedItemId = R.id.your_tickets
-                    R.id.favoriteFlightFragment -> binding.navView.selectedItemId = R.id.favorite_flights
-                    R.id.privateInfoFragment -> binding.navView.selectedItemId = R.id.profil_info
-                    R.id.airportListFragment -> binding.navView.selectedItemId = R.id.airoport_list
-                }
-            }
+            // Обновляем выделение в меню
+            updateMenuSelection(destination.id)
         }
+    }
+
+    private fun updateMenuSelection(destinationId: Int) {
+
+        val menuItemId = bottomNavFragments[destinationId]
+
+        if (menuItemId != null) {
+
+            if (binding.navView.selectedItemId != menuItemId) {
+                isNavigating = true
+                binding.navView.selectedItemId = menuItemId
+                isNavigating = false
+            }
+        } else {
+            // Если это не один из фрагментов меню, снимаем выделение со всех элементов
+            clearMenuSelection()
+        }
+    }
+
+    private fun clearMenuSelection() {
+        (binding.navView as? CustomBottomNavigationView)?.clearSelection()
     }
 }

@@ -44,14 +44,13 @@ class YourTicketsFragment : Fragment() {
     }
 
     private fun setupRecyclerViews() = with(binding) {
-        // Настройка актуальных билетов
+
         rcActualTicket.apply {
             adapter = actualAdapter
             layoutManager = LinearLayoutManager(requireContext())
 
         }
 
-        // Настройка завершенных билетов
         rcFinishedTicket.apply {
             adapter = finishedAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -64,14 +63,14 @@ class YourTicketsFragment : Fragment() {
         val actualTickets = LIST_PLANE.take(2)
         actualAdapter.submitList(actualTickets)
 
-        // Берем следующие два элемента для завершенных билетов
+
         val finishedTickets = LIST_PLANE.drop(2).take(2)
         finishedAdapter.submitList(finishedTickets)
     }
 
     private fun setupListeners() {
         binding.btnBack.setOnClickListener {
-
+        findNavController().popBackStack()
         }
 
 

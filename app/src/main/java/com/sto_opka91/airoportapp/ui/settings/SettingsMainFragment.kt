@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -99,14 +100,13 @@ class SettingsMainFragment : Fragment() {
 
         binding.switchPush.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                checkNotificationPermission {
+                safeCheckNotificationPermission {
                     viewModel.updatePushNotifications(true)
                 }
             } else {
                 viewModel.updatePushNotifications(false)
             }
         }
-
 
         binding.ivGoMoney.setOnClickListener {
             showInform(requireContext(), "Раздел находится в разработке")
@@ -118,6 +118,61 @@ class SettingsMainFragment : Fragment() {
 
         binding.ivGoRedactCard.setOnClickListener {
             showInform(requireContext(), "Раздел находится в разработке")
+        }
+    }
+
+    private fun safeCheckNotificationPermission(onGranted: () -> Unit) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                when {
+                    ContextCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.POST_NOTIFICATIONS
+                    ) == PackageManager.PERMISSION_GRANTED -> {
+                        onGranted()
+                    }
+                    shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
+                        // Показываем объяснение, почему нужны уведомления
+                        showPermissionRationaleDialog {
+                            try {
+                                requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                            } catch (e: Exception) {
+                                Log.e("SettingsMainFragment", "Error requesting permission", e)
+                                binding.switchPush.isChecked = false
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Ошибка при запросе разрешения",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                    else -> {
+                        try {
+                            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                        } catch (e: Exception) {
+                            Log.e("SettingsMainFragment", "Error requesting permission", e)
+                            binding.switchPush.isChecked = false
+                            Toast.makeText(
+                                requireContext(),
+                                "Ошибка при запросе разрешения",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            } else {
+                // На более старых версиях Android разрешение не требуется
+                onGranted()
+            }
+        } catch (e: Exception) {
+            Log.e("SettingsMainFragment", "Error checking notification permission", e)
+            binding.switchPush.isChecked = false
+            Toast.makeText(
+                requireContext(),
+                "Произошла ошибка при проверке разрешений",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -177,29 +232,6 @@ class SettingsMainFragment : Fragment() {
         alertDialog.show()
     }
 
-    private fun checkNotificationPermission(onGranted: () -> Unit) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            when {
-                ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) == PackageManager.PERMISSION_GRANTED -> {
-                    onGranted()
-                }
-                shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS) -> {
-                    // Показываем объяснение, почему нужны уведомления
-                    showPermissionRationaleDialog {
-                        requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-                    }
-                }
-                else -> {
-                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-                }
-            }
-        } else {
-            onGranted()
-        }
-    }
 
     private fun showPermissionRationaleDialog(onPositiveClick: () -> Unit) {
         MaterialAlertDialogBuilder(requireContext())

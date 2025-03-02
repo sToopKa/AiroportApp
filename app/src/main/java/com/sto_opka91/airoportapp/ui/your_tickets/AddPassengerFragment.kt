@@ -50,6 +50,36 @@ class AddPassengerFragment : Fragment() {
         binding.btnAddPassenger.setOnClickListener {
             showInform(requireContext(), "Раздел находится в разработке. Переход на оплату нового пассажира")
         }
+        binding.btnAddPassenger.setOnClickListener {
+            val fio = binding.edFIO.text.toString()
+            val passportNumber = binding.edPassport.text.toString()
+
+            if (validateInputs(fio, passportNumber)) {
+                viewModel.addPassenger(fio, passportNumber)
+                showInform(requireContext(), "Пассажир успешно добавлен")
+                findNavController().popBackStack()
+            }
+        }
+    }
+
+    private fun validateInputs(fio: String, passportNumber: String): Boolean {
+        val fioWords = fio.trim().split("\\s+".toRegex())
+        val isFioValid = fioWords.size == 3
+
+        val cleanPassportNumber = passportNumber.replace("[^0-9]".toRegex(), "")
+        val isPassportValid = cleanPassportNumber.length == 10
+
+        if (!isFioValid) {
+            showInform(requireContext(), "Введите ФИО полностью (Фамилия Имя Отчество)")
+            return false
+        }
+
+        if (!isPassportValid) {
+            showInform(requireContext(), "Номер паспорта должен содержать 10 цифр")
+            return false
+        }
+
+        return true
     }
 
     private fun initData() {
