@@ -63,7 +63,7 @@
 
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="Что-то"
+                    android:text="Ждет обновление"
                     android:textColor="@color/color_text_gray"
                     android:textSize="14sp" />
 

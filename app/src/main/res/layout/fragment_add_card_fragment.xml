@@ -64,7 +64,7 @@
 
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="какой-то текст бла-бла"
+                    android:text="Ждет обновление"
                     android:textColor="@color/color_text_gray"
                     android:textSize="14sp" />
 
