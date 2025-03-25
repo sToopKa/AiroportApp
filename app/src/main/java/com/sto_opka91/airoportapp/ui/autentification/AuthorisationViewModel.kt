@@ -22,7 +22,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthorisationViewModel @Inject constructor(
     private val prefs: PreferencesManager,
-    private val roomRepo: UserRepository
+    private val roomRepo: UserRepository,
+
 ) : ViewModel() {
 
     init{
@@ -91,6 +92,7 @@ class AuthorisationViewModel @Inject constructor(
                     prefs.saveIsLogin(true)
                     _actions.send(StateActions.NavigateToMainEvent)
                 }
+
                 else -> _actions.send(StateActions.ShowErrorEvent("Не получилось зарегистрироваться"))
             }
         }

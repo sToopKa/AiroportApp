@@ -2,6 +2,7 @@ package com.sto_opka91.airoportapp.di
 
 import android.content.Context
 import androidx.room.Room
+import com.google.firebase.auth.FirebaseAuth
 import com.sto_opka91.airoportapp.data.CardRepositoryImpl
 import com.sto_opka91.airoportapp.data.FavoriteFlightRepositoryImpl
 import com.sto_opka91.airoportapp.data.PassengerRepositoryImpl
@@ -38,8 +39,8 @@ object RoomDi {
 
     @Provides
     @Singleton
-    fun provideRoomRepository(roomDao: RoomDao): UserRepository {
-        return UserRepositoryImpl(roomDao)
+    fun provideRoomRepository(roomDao: RoomDao, firebaseAuth: FirebaseAuth): UserRepository {
+        return UserRepositoryImpl(roomDao, firebaseAuth)
     }
 
     @Provides

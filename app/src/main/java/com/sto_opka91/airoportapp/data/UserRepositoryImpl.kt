@@ -2,22 +2,32 @@ package com.sto_opka91.airoportapp.data
 
 
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.sto_opka91.airoportapp.database.RoomDao
 import com.sto_opka91.airoportapp.models.room.UserInfoEntity
 import com.sto_opka91.airoportapp.repository.UserRepository
 import com.sto_opka91.airoportapp.utils.Resource
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class UserRepositoryImpl @Inject constructor(private val roomDao: RoomDao): UserRepository {
+class UserRepositoryImpl @Inject constructor(
+    private val roomDao: RoomDao,
+    private val firebaseAuth: FirebaseAuth
+): UserRepository {
     override suspend fun saveUser(login: String, password: String): Resource<Boolean> {
         return  try{
-            val user = UserInfoEntity(
-                null,
-                login = login,
-                password = password
-            )
-           roomDao.createUser(user)
+            val result = firebaseAuth.createUserWithEmailAndPassword(login, password).await()
+            if (result.user != null) {
+                val user = UserInfoEntity(
+                    null,
+                    login = login,
+                    password = password
+                )
+                roomDao.createUser(user)
                 Resource.Success(true)
+            } else {
+                Resource.UnSuccess(false)
+            }
         }
         catch(e:Exception){
             Resource.Failure(e, false)
@@ -35,11 +45,13 @@ class UserRepositoryImpl @Inject constructor(private val roomDao: RoomDao): User
 
     override suspend fun getRegisterUser(login: String, password: String): Resource<Boolean> {
       return  try{
-            val user = roomDao.getUserByLoginAndPassword(login,password)
-          if(user==null)
-              Resource.UnSuccess(false )
-          else
+          val result = firebaseAuth.signInWithEmailAndPassword(login, password).await()
+          if (result.user != null) {
+              Log.d("myLog", "user from firebase  "+result.user.toString())
               Resource.Success(true)
+          } else {
+              Resource.UnSuccess(false )
+          }
         }
         catch(e:Exception){
             Resource.Failure(e, false)

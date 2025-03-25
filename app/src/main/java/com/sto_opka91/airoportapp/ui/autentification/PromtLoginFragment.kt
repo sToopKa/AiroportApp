@@ -1,5 +1,8 @@
 package com.sto_opka91.airoportapp.ui.autentification
 
+import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,9 +17,11 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.sto_opka91.airoportapp.R
+import com.sto_opka91.airoportapp.databinding.AlertDialogLayoutBinding
 
 import com.sto_opka91.airoportapp.databinding.FragmentPromtLoginBinding
 import com.sto_opka91.airoportapp.ui.autentification.StateHolder.StateActions
+import com.sto_opka91.airoportapp.utils.isEmailValid
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -90,7 +95,13 @@ class PromtLoginFragment : Fragment() {
         })
 
         btnReg.setOnClickListener{
-            viewModel.regUser()
+            val email = binding.edLoginIn.text.toString()
+            if (isEmailValid(email)) {
+                viewModel.regUser()
+            } else {
+                showInform(requireContext(), "Введите корректный email")
+            }
+
         }
         ivBack.setOnClickListener {
             findNavController().navigate(R.id.action_promtLoginFragment_to_enterLoginFragment)
@@ -111,6 +122,19 @@ class PromtLoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun showInform(context: Context, text: String) {
+        val bindingAlert = AlertDialogLayoutBinding.inflate(LayoutInflater.from(context))
+        val mDialogBuilder = android.app.AlertDialog.Builder(context)
+        mDialogBuilder.setView(bindingAlert.root)
+
+        val alertDialog = mDialogBuilder.create()
+        alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        bindingAlert.TextView1.text = text
+        bindingAlert.Image2.setOnClickListener { alertDialog.cancel() }
+        alertDialog.show()
     }
 
     override fun onDestroyView() {

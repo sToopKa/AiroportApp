@@ -22,6 +22,7 @@ import com.sto_opka91.airoportapp.databinding.AlertDialogLayoutBinding
 import com.sto_opka91.airoportapp.databinding.FragmentEnterLoginBinding
 
 import com.sto_opka91.airoportapp.ui.autentification.StateHolder.StateActions
+import com.sto_opka91.airoportapp.utils.isEmailValid
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -101,7 +102,13 @@ class EnterLoginFragment : Fragment() {
         })
 
         btnReg.setOnClickListener{
-            viewModel.checkuser()
+            val email = binding.edLoginIn.text.toString()
+            if (isEmailValid(email)) {
+                viewModel.checkuser()
+            } else {
+                showInform(requireContext(), "Введите корректный email")
+            }
+
         }
 
         tvReg.setOnClickListener {

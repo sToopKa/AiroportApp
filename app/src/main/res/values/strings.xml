@@ -8,12 +8,12 @@
     <string name="authorize">Авторизоваться</string>
     <string name="registration">Зарегистрироваться</string>
     <string name="welcome">Добро пожаловать!</string>
-    <string name="login">Логин</string>
+    <string name="login">Эл. почта</string>
     <string name="password">Пароль</string>
     <string name="forgot_password">Забыли пароль?</string>
     <string name="not_acc">Нет аккаунта?</string>
     <string name="registration_1">Зарегистрируйтесь</string>
     <string name="enter_with">Войти при помощи</string>
-    <string name="invent_login">Придумайте логин</string>
+    <string name="invent_login">Введите эл. почту</string>
     <string name="invent_pass">Придумайте пароль</string>
 </resources>

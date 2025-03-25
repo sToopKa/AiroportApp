@@ -21,3 +21,8 @@ fun <T> Flow<T>.repeatOnCreated(lifecycleOwner: LifecycleOwner) {
         }
     }
 }
+
+fun isEmailValid(email: String): Boolean{
+    return email.contains("@") && email.contains(".") &&
+            email.indexOf("@") < email.lastIndexOf(".")
+}

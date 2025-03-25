@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "218768042508",
+    "project_id": "airoportapp-9fb4b",
+    "storage_bucket": "airoportapp-9fb4b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218768042508:android:05be4701a64e93af995c29",
+        "android_client_info": {
+          "package_name": "com.sto_opka91.airoportapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2_G0zClnkRMoL5VjBYahChZbTnjT26JY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
